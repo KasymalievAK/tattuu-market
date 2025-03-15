@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Таттуу Маркет</title>
     <style>
         * {
@@ -17,14 +17,14 @@
             text-align: center;
         }
         header {
-            padding: 20px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
         }
         .container {
-            max-width: 1000px;
+            max-width: 95%;
             margin: 20px auto;
-            padding: 20px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.05);
             border-radius: 10px;
             backdrop-filter: blur(10px);
@@ -32,51 +32,71 @@
         .hero img {
             width: 100%;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         .products {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Three columns */
-            gap: 20px; /* Increased gap between items */
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 15px;
+            margin-top: 15px;
         }
         .product {
-            padding: 20px; /* Increased padding for bigger items */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            text-align: left; /* Align text to the left */
-            font-size: 1.2em; /* Increased font size for better visibility */
+            text-align: left;
+            font-size: 1em;
+            height: 100%;
         }
         .product img {
-            width: 100%; /* Ensures image fills the width of the product box */
+            width: 100%;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .product h3 {
-            font-size: 1.5em; /* Larger product name */
+            font-size: 1.3em;
         }
         .product p {
-            font-size: 1.2em; /* Larger price */
+            font-size: 1em;
         }
         .btn {
             display: inline-block;
-            padding: 12px 25px; /* Bigger button */
+            padding: 10px 20px;
             background: #d46244;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: 0.3s;
-            margin-top: 10px;
-            font-size: 1.1em; /* Larger button text */
+            font-size: 1em;
+            text-align: center;
+            margin-top: auto;
         }
         .btn:hover {
             background: #ff518f;
         }
         footer {
-            margin-top: 40px;
-            padding: 20px;
+            margin-top: 30px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: 1fr; /* Single column for smaller screens */
+            }
+            .product {
+                font-size: 1em;
+                padding: 10px;
+            }
+            .btn {
+                font-size: 1em;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -91,39 +111,39 @@
     <h2>Доступные продукты</h2>
     <div class="products">
         <div class="product">
-            <img src="assets/finiki-adgva.jpg" alt="Product 1">
+            <img src="assets/finiki-adgva.jpg" alt="Финики Аджва">
             <h3>Финики Аджва</h3>
-            <p>Цена: 6000 сом/68$</p>
+            <p>Цена: 6000 сом / 68$</p>
             <a href="#" class="btn">Добавить в корзину</a>
         </div>
         <div class="product">
-            <img src="assets/injir.webp" alt="Product 2">
+            <img src="assets/injir.webp" alt="Инжир вяленный">
             <h3>Инжир вяленный</h3>
-            <p>Цена: 400 сом/4.5$</p>
+            <p>Цена: 400 сом / 4.5$</p>
             <a href="#" class="btn">Добавить в корзину</a>
         </div>
         <div class="product">
-            <img src="assets/greckiy-oreh.jpg" alt="Product 3">
+            <img src="assets/greckiy-oreh.jpg" alt="Грецкий орех">
             <h3>Грецкий орех</h3>
-            <p>Цена: 250 сом/2.8$</p>
+            <p>Цена: 250 сом / 2.8$</p>
             <a href="#" class="btn">Добавить в корзину</a>
         </div>
         <div class="product">
-            <img src="assets/med.jpeg" alt="Product 4">
+            <img src="assets/med.jpeg" alt="Мёд">
             <h3>Мёд</h3>
-            <p>Цена: 500 сом/6.7$</p>
+            <p>Цена: 500 сом / 6.7$</p>
             <a href="#" class="btn">Добавить в корзину</a>
         </div>
         <div class="product">
-            <img src="assets/arahis.jpg" alt="Product 5">
+            <img src="assets/arahis.jpg" alt="Арахис (Жер жангак)">
             <h3>Арахис (Жер жангак)</h3>
-            <p>Цена: 250 сом/2.8$</p>
+            <p>Цена: 250 сом / 2.8$</p>
             <a href="#" class="btn">Добавить в корзину</a>
         </div>
         <div class="product">
-            <img src="assets/finiki-medjul.webp" alt="Product 6">
+            <img src="assets/finiki-medjul.webp" alt="Финики Королевские 'Меджул'">
             <h3>Финики Королевские "Меджул"</h3>
-            <p>Цена: 1500 сом/17.15$</p>
+            <p>Цена: 1500 сом / 17.15$</p>
             <a href="#" class="btn">Добавить в корзину</a>
         </div>
     </div>
