@@ -4,105 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Таттуу Маркет</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background: white;
-            color: black;
-            text-align: center;
-        }
-        header {
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(1000px);
-        }
-        .container {
-            max-width: 95%;
-            margin: 20px auto;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-            backdrop-filter: blur(30px);
-        }
-        .hero img {
-            width: 100%;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .product {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: left;
-            font-size: 1em;
-            height: 100%;
-        }
-        .product img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .product h3 {
-            font-size: 1.3em;
-        }
-        .product p {
-            font-size: 1em;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #d46244;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
-            font-size: 1em;
-            text-align: center;
-            margin-top: auto;
-        }
-        .btn:hover {
-            background: #ff518f;
-        }
-        footer {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(30px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .products {
-                grid-template-columns: 1fr; /* Single column for smaller screens */
-            }
-            .product {
-                font-size: 1em;
-                padding: 10px;
-            }
-            .btn {
-                font-size: 1em;
-                padding: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scripts.js"></script>
 </head>
 <body>
 <header>
     <h1>Таттуу Маркет</h1>
+    <button id='cart' class="cart" onclick="location.href='cart.html'">Корзина</button>
 </header>
 <div class="container">
     <div class="hero">
@@ -114,13 +22,21 @@
             <img src="assets/finiki-adgva.jpg" alt="Финики Аджва">
             <h3>Финики Аджва</h3>
             <p>Цена: 6000 сом / 68$ (кг)</p>
-            <a href="#" class="btn">Добавить в корзину</a>
+            <div class="btn-row">
+                <button onclick="addToCart(dates_adjva)" class="btn" type="button">+</button>
+                <button onclick="removeFromCart(dates_adjva)" class="btn" type="button">-</button>
+            </div>
+            <p id='dates-adjva-cart' class="bold">В корзине: </p>
         </div>
         <div class="product">
             <img src="assets/injir.webp" alt="Инжир вяленный">
             <h3>Инжир вяленный</h3>
             <p>Цена: 400 сом / 4.5$ (кг)</p>
-            <a href="#" class="btn">Добавить в корзину</a>
+            <div class="btn-row">
+                <button onclick="addToCart(fig)" class="btn" type="button">+</button>
+                <button onclick="removeFromCart(fig)" class="btn" type="button">-</button>
+            </div>
+            <p id="fig-cart" class="bold">В корзине: </p>
         </div>
         <div class="product">
             <img src="assets/greckiy-oreh.jpg" alt="Грецкий орех">
@@ -150,17 +66,6 @@
 </div>
 <footer>
     <p>Свяжитесь с нами: | Телефон: </p>
-    <br>
-    <h3>Реквизиты (сом/национальная валюта)</h3>
-    <p>Банк: <strong>Жибек Жолу "ОАО Бакай Банк"</strong></p>
-    <p>БИК: <strong>124031</strong></p>
-    <p>Расчетный счет: <strong>1240020001916663</strong></p>
-    <br>
-    <h3>Реквизиты (доллар/USD)</h3>
-    <p>:56 Intermediary bank: <strong>Aktif Yatirim Bankasi A. S., Istanbul, Turkey, SWIFT: CAYTTRIS</strong></p>
-    <p>:57 Beneficiary bank: <strong>OJSC BAKAI BANK, Bishkek, Kyrgyz Republic, SWIFT: BAKAKG22 Account number: TR280014300000000009443581</strong></p>
-    <p>:59 Beneficiary: <strong>Account 1240020001916663 GrandLeader Group LLC</strong></p>
-    <br>
     <p>&copy; 2025 Грандлидер Групп. Все права защищены.</p>
 </footer>
 
