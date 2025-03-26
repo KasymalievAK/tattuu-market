@@ -83,6 +83,10 @@ function pay() {
         };
     });
 
+    if (totalAmount === 0) {
+        return;
+    }
+
     var data = {
         token: "v7W2AmRlQhtEmqUVgBcO1ym7FeLMOUgC",
         payment: {
@@ -121,7 +125,7 @@ function pay() {
                 document.getElementById('payment-error').style.display = 'none';
             }, 5000);
         }
-    }
+    };
 
     var widget = new PayBox(data);
     widget.create();
