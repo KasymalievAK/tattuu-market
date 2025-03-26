@@ -213,3 +213,11 @@ footer {
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+
+.main-logo {
+  position: absolute;
+  left: 10px;
+  width: 50px;
+  height: auto;
+  margin: 5px;
+}
