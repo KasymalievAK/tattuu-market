@@ -30,9 +30,9 @@ function loadCart() {
         if (!all[productId] || all[productId] === 0) {
             return;
         }
-        products[productId];
         let item = products[productId];
         let itemDiv = document.createElement('div');
+        let totalPrice = all[productId] * price_by_items[productId].price
         itemDiv.classList.add('cart-item');
         itemDiv.innerHTML = `
                     <img src="${item.img}" alt="${item.name}">
@@ -40,6 +40,7 @@ function loadCart() {
                         <p><strong>${item.name}</strong></p>
                         <p>Цена: ${item.price}</p>
                         <p>Количество: ${all[productId]} шт.</p>
+                        <p>Общая стоимость: ${totalPrice}</p>
                     </div>
                     <div class="cart-item-buttons">
                         <button onclick="changeQuantity('${productId}', 1)">+</button>
@@ -48,6 +49,7 @@ function loadCart() {
                 `;
         cartContainer.appendChild(itemDiv);
     });
+    updateCartSummary(all);
 }
 
 function changeQuantity(productId, change) {
@@ -123,6 +125,19 @@ function pay() {
 
     var widget = new PayBox(data);
     widget.create();
+}
+
+function updateCartSummary() {
+    let totalItems = 0;
+    let totalAmount = 0;
+
+    Object.entries(all).map(([key, value]) => {
+        totalItems += value;
+        totalAmount += price_by_items[key].price * value;
+    });
+
+    document.getElementById('total-items').textContent = totalItems;
+    document.getElementById('total-amount').textContent = totalAmount;
 }
 
 function clearCart() {
