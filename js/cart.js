@@ -113,7 +113,11 @@ function pay() {
             }, 10000); // Hide after 5 seconds
         },
         errorCallback: function (payment) {
-
+            console.error("Payment failed:", payment);
+            document.getElementById('payment-error').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('payment-error').style.display = 'none';
+            }, 5000);
         }
     }
 
