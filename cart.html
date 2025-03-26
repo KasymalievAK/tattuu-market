@@ -1,52 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="ru">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <title>Корзина</title>-->
-<!--    <link rel="stylesheet" href="css/styles.css">-->
-<!--    <script src="js/scripts.js" defer></script>-->
-<!--</head>-->
-<!--<body>-->
-<!--<header>-->
-<!--    <h1>Таттуу Маркет</h1>-->
-<!--    <button id='cart' class="cart" onclick="location.href='index.html'">Назад на главную</button>-->
-<!--</header>-->
-<!--<div class="cart-container">-->
-<!--    <h2>Ваши товары</h2>-->
-<!--    <div id="cart-items"></div>-->
-
-<!--    <button onclick="clearCart()" class="btn">Очистить корзину</button>-->
-<!--</div>-->
-
-<!--<footer>-->
-<!--    <p>Свяжитесь с нами: | Телефон: </p>-->
-<!--    <p><a href="assets/offer_agreement.pdf" target="_blank">Договор оферты</a> | <a href="assets/user_agreement.pdf" target="_blank">Пользовательское соглашение</a></p>-->
-<!--    <p>Юридическая информация: ООО "Грандлидер Групп", почтовый адрес: Кыргызская Республика, Бишкек, Первомайский район, ул.Логвиненко, Д.55, кв.243</p>-->
-<!--    <p>Контактные данные: borbuevbeksultan@gmail.com | Телефон: +996 559 770 379</p>-->
-<!--    <p>Ответственные сотрудники: Борбуев Бексултан, email: borbuevbeksultan@gmail.com</p>-->
-<!--    <p>Регистрационный номер: 313899-3301-ООО</p>-->
-<!--    <p>Код ОКПО: 33714217</p>-->
-<!--    <p>ИНН: 00603202510088</p>-->
-<!--    <p>Ответственные сотрудники: Борбуев Бексултан, email: borbuevbeksultan@gmail.com</p>-->
-
-<!--    <h3>Мы принимаем к оплате:</h3>-->
-<!--    <div class="payment-methods">-->
-<!--        <div class="payment-methods">-->
-<!--            <img class="logo" src="assets/Visa_Inc._logo.svg" alt="Visa">-->
-<!--            <img class="logo" src="assets/MasterCard_.svg" alt="MasterCard">-->
-<!--            <img class="logo" src="assets/Maestro_.svg" alt="Maestro">-->
-<!--            <img class="logo" src="assets/MegaPay-512h-svg.svg" alt="Megapay">-->
-<!--            <img class="logo" src="assets/MBank_.svg" alt="MBank">-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <p>&copy; 2025 Грандлидер Групп. Все права защищены.</p>-->
-<!--</footer>-->
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -55,112 +6,47 @@
     <title>Корзина - Таттуу Маркет</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/scripts.js"></script>
-    <style>
-        .cart-container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-        .cart-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .cart-item-details {
-            flex-grow: 1;
-            margin-left: 15px;
-        }
-        .cart-item-buttons button {
-            padding: 5px 10px;
-            margin: 0 5px;
-            background: #ff5722;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .cart-item-buttons button:hover {
-            background: #e64a19;
-        }
-        .empty-cart {
-            text-align: center;
-            font-size: 18px;
-            padding: 20px;
-        }
-    </style>
+    <script src="js/cart.js"></script>
 </head>
 <body>
 <header>
     <h1>Корзина</h1>
-    <button onclick="location.href='index.html'">Назад в магазин</button>
+    <button id='cart' class="cart" onclick="location.href='index.html'">Назад на главную</button>
 </header>
 <div class="cart-container" id="cart-items">
 </div>
-<script>
-    function loadCart() {
-        let all = JSON.parse(sessionStorage.getItem('cart')) || {};
-        let cartContainer = document.getElementById('cart-items');
-        cartContainer.innerHTML = '';
+<div class="cart-actions">
+    <button onclick="pay()" class="btn">Оплатить</button>
+    <button onclick="clearCart()" class="btn">Очистить корзину</button>
+</div>
 
-        if (Object.keys(all).length === 0) {
-            cartContainer.innerHTML = "<p class='empty-cart'>Корзина пуста</p>";
-            return;
-        }
+<div id="payment-success" class="success-bar" style="display: none;">
+    ✅ Оплата прошла успешно!
+</div>
 
-        let products = {
-            1: { name: "Финики Аджва", price: "6000 сом", img: "assets/finiki-adgva.jpg" },
-            2: { name: "Инжир вяленный", price: "400 сом", img: "assets/injir.webp" },
-            3: { name: "Грецкий орех", price: "250 сом", img: "assets/greckiy-oreh.jpg" },
-            4: { name: "Мёд", price: "500 сом", img: "assets/med.jpeg" },
-            5: { name: "Арахис (Жер жангак)", price: "250 сом", img: "assets/arahis.jpg" },
-            6: { name: "Финики Королевские \"Меджул\"", price: "1500 сом", img: "assets/finiki-medjul.webp" }
-        };
+<footer>
+    <p>Свяжитесь с нами: | Телефон: </p>
+    <p><a href="assets/offer_agreement.pdf" target="_blank">Договор оферты</a> | <a href="assets/user_agreement.pdf" target="_blank">Пользовательское соглашение</a></p>
+    <p>Юридическая информация: ООО "Грандлидер Групп", почтовый адрес: Кыргызская Республика, Бишкек, Первомайский район, ул.Логвиненко, Д.55, кв.243</p>
+    <p>Контактные данные: borbuevbeksultan@gmail.com | Телефон: +996 559 770 379</p>
+    <p>Ответственные сотрудники: Борбуев Бексултан, email: borbuevbeksultan@gmail.com</p>
+    <p>Регистрационный номер: 313899-3301-ООО</p>
+    <p>Код ОКПО: 33714217</p>
+    <p>ИНН: 00603202510088</p>
+    <p>Ответственные сотрудники: Борбуев Бексултан, email: borbuevbeksultan@gmail.com</p>
 
-        Object.keys(all).forEach(productId => {
-            if (products[productId]) {
-                let item = products[productId];
-                let itemDiv = document.createElement('div');
-                itemDiv.classList.add('cart-item');
-                itemDiv.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
-                    <div class="cart-item-details">
-                        <p><strong>${item.name}</strong></p>
-                        <p>Цена: ${item.price}</p>
-                        <p>Количество: ${all[productId]} шт.</p>
-                    </div>
-                    <div class="cart-item-buttons">
-                        <button onclick="changeQuantity('${productId}', 1)">+</button>
-                        <button onclick="changeQuantity('${productId}', -1)">-</button>
-                    </div>
-                `;
-                cartContainer.appendChild(itemDiv);
-            }
-        });
-    }
+    <h3>Мы принимаем к оплате:</h3>
+    <div class="payment-methods">
+        <div class="payment-methods">
+            <img class="logo" src="assets/Visa_Inc._logo.svg" alt="Visa">
+            <img class="logo" src="assets/MasterCard_.svg" alt="MasterCard">
+            <img class="logo" src="assets/Maestro_.svg" alt="Maestro">
+            <img class="logo" src="assets/MegaPay-512h-svg.svg" alt="Megapay">
+            <img class="logo" src="assets/MBank_.svg" alt="MBank">
+        </div>
+    </div>
 
-    function changeQuantity(productId, change) {
-        let all = JSON.parse(sessionStorage.getItem('cart')) || {};
-        if (!all[productId]) return;
-        all[productId] += change;
-        if (all[productId] <= 0) {
-            delete all[productId];
-        }
-        sessionStorage.setItem('cart', JSON.stringify(all));
-        loadCart();
-    }
-
-    window.onload = loadCart;
-</script>
+    <p>&copy; 2025 Грандлидер Групп. Все права защищены.</p>
+</footer>
 </body>
 </html>

@@ -12,14 +12,18 @@ let cart_honey = 0;
 let cart_peanut = 0;
 let cart_dates_medjul = 0;
 
-let cart_by_items = {
+let initial_cart_by_items_state = {
     1: cart_dates_adjva,
-    2: cart_fig
+    2: cart_fig,
+    3: cart_walnuts,
+    4: cart_honey,
+    5: cart_peanut,
+    6: cart_dates_medjul
 }
 
-let all = JSON.parse(sessionStorage.getItem('cart')) || {};
+let all = JSON.parse(sessionStorage.getItem('cart')) || initial_cart_by_items_state;
 function saveCart() {
-    sessionStorage.setItem('cart', JSON.stringify(all)); // Save cart to sessionStorage
+    sessionStorage.setItem('cart', JSON.stringify(all));
 }
 
 function addToCart(productId) {
@@ -44,7 +48,6 @@ function removeFromCart(productId) {
 
     all[productId]--;
     saveCart();
-    console.log(all);
     if (all[productId] === 0) {
         document.getElementById('cart').style.background = 'white';
     }
@@ -53,17 +56,26 @@ function removeFromCart(productId) {
 }
 
 function updateCartByItem(productId) {
-    switch (productId) {
-        case dates_adjva:
-            document.getElementById('dates-adjva-cart').textContent = 'В корзине: ' + all[productId];break
-        case fig:
-            document.getElementById('fig-cart').textContent = 'В корзине: ' + all[productId];break
+    switch (String(productId)) {
+        case String(dates_adjva):
+            document.getElementById('dates-adjva-cart').textContent = 'В корзине: ' + all[productId];
+            break;
+        case String(fig):
+            document.getElementById('fig-cart').textContent = 'В корзине: ' + all[productId];
+            break;
+        case String(walnuts):
+            document.getElementById('walnuts-cart').textContent = 'В корзине: ' + all[productId];
+            break;
+        case String(honey):
+            document.getElementById('honey-cart').textContent = 'В корзине: ' + all[productId];
+            break;
+        case String(peanut):
+            document.getElementById('peanut-cart').textContent = 'В корзине: ' + all[productId];
+            break;
+        case String(dates_medjul):
+            document.getElementById('dates-medjul-cart').textContent = 'В корзине: ' + all[productId];
+            break;
     }
-
-}
-
-function clearCart() {
-
 }
 
 function loadCart() {
@@ -71,23 +83,9 @@ function loadCart() {
     if (Object.keys(all).length > 0) {
         document.getElementById('cart').style.background = 'red';
     }
-    let cartContainer = document.getElementById('cart-items');
-    cartContainer.innerHTML = '';
-
-    if (Object.keys(all).length === 0) {
-        cartContainer.innerHTML = "<p>Корзина пуста</p>";
-        return;
-    }
-
+    console.log(all)
     Object.keys(all).forEach(productId => {
-        let itemDiv = document.createElement('div');
-        itemDiv.classList.add('cart-item');
-        itemDiv.innerHTML = `
-            <p><strong>${productId}</strong>: ${all[productId]} шт.</p>
-            <button onclick="changeQuantity('${productId}', 1)">+</button>
-            <button onclick="changeQuantity('${productId}', -1)">-</button>
-        `;
-        cartContainer.appendChild(itemDiv);
+        updateCartByItem(productId)
     });
 }
 

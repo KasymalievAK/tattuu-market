@@ -30,6 +30,8 @@ header {
   z-index: 1000;
 }
 .container {
+  min-height: 100vh;
+  height: 100%;
   max-width: 95%;
   margin: 20px auto;
   padding-top: 15px;
@@ -37,15 +39,7 @@ header {
   border-radius: 10px;
   backdrop-filter: blur(30px);
 }
-.cart-container {
-  flex: 1;
-  max-width: 95%;
-  margin: 20px auto;
-  padding-top: 15px;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  backdrop-filter: blur(30px);
-}
+
 .hero img {
   width: 100%;
   border-radius: 10px;
@@ -133,4 +127,77 @@ footer {
     font-size: 1em;
     padding: 10px;
   }
+}
+
+.cart-container {
+  min-height: auto;
+  flex: 1;
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.cart-item-details {
+  flex-grow: 1;
+  margin-left: 15px;
+}
+.cart-item-buttons button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cart-item-buttons button:hover {
+  background: #e64a19;
+}
+.empty-cart {
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+}
+.cart-actions {
+  display: flex;
+  justify-content: normal;
+  margin-top: 20px;
+}
+.cart-actions .btn {
+  padding: 10px 20px 10px 10px;
+  background: #1c6a1f;
+  color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cart-actions .btn:hover {
+  background: #45a049;
+}
+
+.success-bar {
+  background-color: #45a049;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
