@@ -101,7 +101,6 @@ function pay() {
             param1: "string",
             param2: "string",
             param3: "string",
-            test: 1,
             options: {
                 callbacks: {
                     result_url: "https://tattuu-market.kg/result",
