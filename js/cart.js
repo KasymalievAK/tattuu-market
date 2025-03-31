@@ -87,6 +87,9 @@ function pay() {
         return;
     }
 
+    let currentDate = new Date()
+    currentDate.setMinutes(new Date().getMinutes() + 5)
+
     var data = {
         token: "v7W2AmRlQhtEmqUVgBcO1ym7FeLMOUgC",
         payment: {
@@ -94,15 +97,15 @@ function pay() {
             amount: totalAmount,
             currency: "KGS",
             description: "Описание заказа",
-            expires_at: "2020-12-12 00:00:00",
+            expires_at: currentDate,
             param1: "string",
             param2: "string",
             param3: "string",
             test: 1,
             options: {
                 callbacks: {
-                    result_url: "https://my-domain.com/result",
-                    check_url: "https://my-domain.com/check"
+                    result_url: "https://tattuu-market.kg/result",
+                    check_url: "https://tattuu-market.kg/check"
                 },
                 custom_params: {},
                 user: {
