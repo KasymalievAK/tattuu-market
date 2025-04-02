@@ -3,7 +3,7 @@ let price_by_items = {
     2: {price: 400, name: "Инжир вяленный"},
     3: {price: 250, name: "Грецкий орех"},
     4: {price: 500, name: "Мёд"},
-    5: {price: 250, name: "Арахис"},
+    5: {price: 1, name: "Арахис"},
     6: {price: 1500, name: "Финики Королевские Меджул "}
 }
 
@@ -98,9 +98,8 @@ function pay() {
             currency: "KGS",
             description: "Описание заказа",
             expires_at: currentDate,
-            param1: "string",
-            param2: "string",
-            param3: "string",
+            param1: all.toString(),
+            param2: totalAmount,
             options: {
                 callbacks: {
                     result_url: "https://tattuu-market.kg/result",
