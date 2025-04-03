@@ -88,6 +88,9 @@ function pay() {
     }
 
     let currentDate = new Date()
+    let email = Math.round(Math.random()*100000)+"@gmail.com";
+    let phoneNumber = "+99655" + Math.round(Math.random()*1000000);
+
     currentDate.setMinutes(new Date().getMinutes() + 5)
 
     var data = {
@@ -107,7 +110,8 @@ function pay() {
                 },
                 custom_params: {},
                 user: {
-                    phone: "+996559770379",
+                    email: email,
+                    phone: phoneNumber,
                 },
                 receipt_positions: mapped
             }
