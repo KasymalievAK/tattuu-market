@@ -89,7 +89,7 @@ function pay() {
 
     let currentDate = new Date()
     let email = Math.round(Math.random()*100000)+"@gmail.com";
-    let phoneNumber = "+99655" + Math.round(Math.random()*1000000);
+    let phoneNumber = document.getElementById("phone-number").value;
 
     currentDate.setMinutes(new Date().getMinutes() + 5)
 
