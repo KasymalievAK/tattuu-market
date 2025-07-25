@@ -94,7 +94,7 @@ function pay() {
     currentDate.setMinutes(new Date().getMinutes() + 5)
 
     var data = {
-        token: "WCTvrflnZvHDl0fj",
+        token: "wUdm7ouUktF7eN6Kh0Fcy2pYyadT0fPt",
         payment: {
             order: String(getRandomInt(1, 100000)),
             amount: totalAmount,
